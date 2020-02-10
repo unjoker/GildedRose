@@ -30,6 +30,11 @@ namespace GildedRose.Console
 
             app.UpdateQuality();
 
+            foreach (var item in app.Items)
+            {
+                System.Console.WriteLine($"Name: {item.Name}, Quality: {item.Quality}, SellIn: {item.SellIn}");
+            }
+
             System.Console.ReadKey();
 
         }
