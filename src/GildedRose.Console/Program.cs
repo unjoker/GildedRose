@@ -53,28 +53,28 @@ namespace GildedRose.Console
                         }
                     }
                 }
-                else
+                else if(Items[i].Name == "Aged Brie")
                 {
+                    AgedBrie(Items[i]);
+                }
+                else if(Items[i].Name == "Backstage passes to a TAFKAL80ETC concert") {
                     if (Items[i].Quality < 50)
                     {
                         Items[i].Quality = Items[i].Quality + 1;
 
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (Items[i].SellIn < 11)
                         {
-                            if (Items[i].SellIn < 11)
+                            if (Items[i].Quality < 50)
                             {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                                Items[i].Quality = Items[i].Quality + 1;
                             }
+                        }
 
-                            if (Items[i].SellIn < 6)
+                        if (Items[i].SellIn < 6)
+                        {
+                            if (Items[i].Quality < 50)
                             {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                                Items[i].Quality = Items[i].Quality + 1;
                             }
                         }
                     }
@@ -104,14 +104,19 @@ namespace GildedRose.Console
                             Items[i].Quality = Items[i].Quality - Items[i].Quality;
                         }
                     }
-                    else
+                    else if (Items[i].Name == "Aged Brie")
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        AgedBrie(Items[i]);
                     }
                 }
+            }
+        }
+
+        private void AgedBrie(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
             }
         }
 
