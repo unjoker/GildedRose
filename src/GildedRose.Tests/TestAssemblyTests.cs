@@ -33,73 +33,9 @@ namespace GildedRose.Tests
             Assert.True(true);
         }
 
-        [Fact]
-        public void QualityShouldNeverBeNegative()
-        {
-            var program = new Program();
-            program.Items = Items;
-            program.UpdateQuality();
+       
+ 
 
-            Assert.DoesNotContain(program.Items, item => item.Quality < 0);
-        }
-        [Fact]
-        public void QualityShouldNeverBeGreaterThan50()
-        {
-            var program = new Program();
-            program.Items = Items;
-            program.UpdateQuality();
-
-            Assert.DoesNotContain(program.Items, item => item.Quality > 50 && item.Name != "Sulfuras, Hand of Ragnaros");
-        }
-
-        [Fact]
-        public void SulfurasQualityShouldNeverChange()
-        {
-            var program = new Program();
-            program.Items = Items;
-
-            var sulfurasOldQuality = Items.FirstOrDefault(item => item.Name == "Sulfuras, Hand of Ragnaros")?.Quality;
-
-            program.UpdateQuality();
-
-            var sulfurasNewQuality = program.Items.FirstOrDefault(item => item.Name == "Sulfuras, Hand of Ragnaros")?.Quality;
-
-            Assert.Equal(sulfurasOldQuality, sulfurasNewQuality);
-        }
-
-        [Fact]
-        public void AgedBrieQualityShouldIncrease()
-        {
-            var program = new Program();
-            program.Items = Items;
-
-            var agedBrieOldQuality = Items.FirstOrDefault(item => item.Name == "Aged Brie")?.Quality;
-
-            program.UpdateQuality();
-
-            var agedBrieNewQuality = program.Items.FirstOrDefault(item => item.Name == "Aged Brie")?.Quality;
-
-            Assert.True(agedBrieOldQuality < agedBrieNewQuality);
-        }
-
-        [Fact]
-        public void QualityShouldDegradeTwiceAsFastAfterSellByDateHAsPassed()
-        {
-            var program = new Program();
-
-            program.Items = new List<Item> {
-                new Item { Name = "Conjured Mana Cake", SellIn = 1, Quality = 10 } 
-            };
-
-            var cakeOldQuality = program.Items.FirstOrDefault(item => item.Name == "Conjured Mana Cake")?.Quality - 3;
-
-            program.UpdateQuality();
-            program.UpdateQuality();
-
-            var cakeNewQuality = program.Items.FirstOrDefault(item => item.Name == "Conjured Mana Cake")?.Quality;
-
-            Assert.Equal(cakeOldQuality, cakeNewQuality);
-        }
-
+       
     }
 }
