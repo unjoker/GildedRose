@@ -80,5 +80,21 @@ namespace GildedRose.Tests
 
             Assert.True(bsPassesNewQuality == 0);
         }
+
+        [Fact]
+        public void BackstagePassesQualityShouldNeverBeAbove50()
+        {
+            var program = new Program();
+            Items.Find(x => x.Name.StartsWith("Backstage passes")).Quality = 49;
+            Items.Find(x => x.Name.StartsWith("Backstage passes")).SellIn = 3;
+            program.Items = Items;
+
+            program.UpdateQuality();
+            program.UpdateQuality();
+
+            var bsPassesNewQuality = program.Items.FirstOrDefault(item => item.Name.StartsWith("Backstage passes"))?.Quality;
+
+            Assert.True(bsPassesNewQuality == 50);
+        }
     }
 }
